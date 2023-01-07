@@ -1,11 +1,12 @@
+export{}
 var fs = require("fs");
 var text = fs.readFileSync("./AoC_day1/input.txt", "utf-8");
 var textByLine = text.split("\n")
 
 /* Part 1 */
 
-var emptyArray = [];
-var topThreeElves = [];
+var emptyArray = Array();
+var topThreeElves = Array();
 
 while (indexToSplit !== -1) {
     var indexToSplit = textByLine.indexOf(''); // get index of empty item

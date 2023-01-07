@@ -1,3 +1,4 @@
+export{}
 const fs = require("fs");
 const textByLine = fs.readFileSync("./AoC_day2/input.txt", "utf-8").split("\n");
 

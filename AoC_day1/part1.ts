@@ -1,8 +1,9 @@
+export{}
 var fs = require("fs");
 var text = fs.readFileSync("./AoC_day1/input.txt", "utf-8");
 var textByLine = text.split("\n")
 
-var emptyArray = [];
+var emptyArray = Array();
 
 while (indexToSplit !== -1) {
     var indexToSplit = textByLine.indexOf(''); // get index of empty item
