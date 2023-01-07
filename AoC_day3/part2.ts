@@ -10,6 +10,7 @@ const getLettersMap = () => {
     let alphaTextUpper = alphaText.toUpperCase();
 
     let alphaLowerAndUpper = alphaText.concat(alphaTextUpper);
+
     let alphaJoined = Array.from(alphaLowerAndUpper)
 
     for (let letter in alphaJoined) {
@@ -21,19 +22,33 @@ const getLettersMap = () => {
 
 const lettersValue = new Map<string, number>(getLettersMap())
 
+let lengthDividedByThree = (textByLine.length/3)
+
+let arrayOfThree = Array();
+let parsedLine = Array();
+
+
+for (const line in textByLine) {
+    parsedLine.push(Object.assign([], textByLine[line]))
+}
+
+for (var i = 0; i < lengthDividedByThree; i++) {
+    const slicedArray = parsedLine.slice(0, 3);
+    parsedLine.splice(0,3);
+    arrayOfThree.push(slicedArray)
+}
+
 const getNumbersValue = () => {
-    for (const line of textByLine) {
-        const roundArray = Object.assign([], line);
-        const half = Math.ceil(roundArray.length / 2);
+    for (const trippleLine of arrayOfThree) {
 
-        const firstHalf = roundArray.slice(0, half)
-        const secondHalf = roundArray.slice(half)
+        var result = trippleLine.shift().reduce(function(res, v) {
+            if (res.indexOf(v) === -1 && trippleLine.every(function(a) {
+                return a.indexOf(v) !== -1;
+            })) res.push(v);
+            return res;
+        }, []);
 
-        const intersection = firstHalf.filter(remainingLetter => {
-            return secondHalf.includes(remainingLetter);
-          });
-        
-        let remainingLetterValue = lettersValue.get(intersection[0])
+        let remainingLetterValue = lettersValue.get(result[0])
 
         points += remainingLetterValue!
     }
